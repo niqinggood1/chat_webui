@@ -30,7 +30,5 @@ def returnMessage():
     print("自动回复消息："+ html.json()["content"])
     return html.json()["content"]
 
-
-
 if __name__ == '__main__':
     app.run(debug=True)
