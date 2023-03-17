@@ -47,8 +47,9 @@ def returnMessage():
         print("自动回复消息："+ html.json()["content"])
         html_content    = html.json()["content"]
         ret             = html_content
+        ret            += '[GPT]'
     else:
-        ret ='[取自图谱]' +ret
+        ret             ='[图谱]' + ret
     #违规内容，容内规违
     for k in ['习近平','近平','大大','党','李克强','毛泽东','江泽民','军队']:
         if k in ret :
@@ -62,6 +63,8 @@ def feedback():
 
     if '取自图谱' in send_message:
         return ''
+
+    send_message  = send_message.replace('[GPT]','').replace('[图谱]','')
 
     feedback     = request.values.get("feedback")
     print(str(ip_addr) +'  feedback:'+ feedback + "   收到的消息：" + send_message)
