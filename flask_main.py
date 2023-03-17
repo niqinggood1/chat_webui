@@ -38,16 +38,17 @@ def returnMessage():
 
     ret     = ''
     if '症状' in send_message or '怎么办'in send_message or '吃什么' in send_message or '药' in send_message:
-        ret = '[取自图谱]'+chat( send_message )
+        ret = chat( send_message )
 
     if ret in ['','##知识谱图暂未有答案' ]:
-
         json_data = json.dumps({'text': urllib.parse.quote(send_message) ,
                                 'username': ip_addr.replace('.','-') })                        # 本次请求request_id
         html = requests.post('http://112.47.35.97:28648//gpt_chat', data=json_data)
         print("自动回复消息："+ html.json()["content"])
         html_content    = html.json()["content"]
         ret             = html_content
+    else:
+        ret ='[取自图谱]' +ret
     #违规内容，容内规违
     for k in ['习近平','近平','大大','党','李克强','毛泽东','江泽民','军队']:
         if k in ret :
