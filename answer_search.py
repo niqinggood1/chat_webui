@@ -7,12 +7,12 @@
 from py2neo import Graph
 
 class AnswerSearcher:
-    def __init__(self):
+    def __init__(self,host="127.0.0.1",http_port=7474,user="neo4j",password="neo4j"):
         self.g = Graph(
-            host="127.0.0.1",
-            http_port=7474,
-            user="neo4j",
-            password="neo4j")
+            host=host,
+            http_port=http_port,
+            user=user,
+            password=password)
         self.num_limit = 20
 
     '''执行cypher查询，并返回相应结果'''

@@ -38,6 +38,7 @@ def chat( request ):
 
 if __name__ == '__main__':
     ret = chat(  '感冒了吃什么药')
+    print('ret:',ret)
     exit()
     
   
