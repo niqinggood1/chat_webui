@@ -38,7 +38,7 @@ def returnMessage():
 
     ret     = ''
     if '症状' in send_message or '怎么办'in send_message or '吃什么' in send_message or '药' in send_message:
-        ret = chat( send_message )
+        ret = '[取自图谱]'+chat( send_message )
 
     if ret in ['','##知识谱图暂未有答案' ]:
 
@@ -58,6 +58,10 @@ def returnMessage():
 def feedback():
     ip_addr     = request.remote_addr
     send_message = request.values.get("send_message")
+
+    if '取自图谱' in send_message:
+        return ''
+
     feedback     = request.values.get("feedback")
     print(str(ip_addr) +'  feedback:'+ feedback + "   收到的消息：" + send_message)
     json_data = json.dumps({'text': urllib.parse.quote(send_message),
