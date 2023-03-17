@@ -1,53 +1,70 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Document</title>
     <style type="text/css">
+        .headtext{
+           margin:0px;
+        }
+        .headtext span{
+            display:inline-block;
+            border-radius:10px;
+            color:#000000;
+            font-size:13px;
+            font-family:楷体;
+            padding:5px 10px;
+        }
         .talk_con{
-            width:600px;
-            height:500px;
+            width:400px;
+            height:0px;
             border:1px solid #666;
-            margin:50px auto 0;
+            margin:5px auto 0;
             background:#f9f9f9;
         }
         .talk_show{
-            width:580px;
-            height:420px;
+            width:400px;
+            height:520px;
             border:1px solid #666;
             background:#fff;
             margin:10px auto 0;
+            font-size:14px;
             overflow:auto;
         }
         .talk_input{
-            width:580px;
-            margin:10px auto 0;
+            width:400px;
+            margin:1px auto 0;
         }
         .whotalk{
-            width:80px;
-            height:30px;
+            width:70px;
+            height:1px;
             float:left;
             outline:none;
+            font-size:2px;
+        }
+        .talk_sub{
+            width:60px;
+            height:56px;
+            float:left;
+            margin-left:0px;
+            font-size:16px;
         }
         .talk_word{
-            width:420px;
-            height:26px;
+            width:340px;
+            height:56px;
             padding:0px;
             float:left;
-            margin-left:10px;
+            margin-left:0px;
             outline:none;
             text-indent:10px;
-        }        
-        .talk_sub{
-            width:56px;
-            height:30px;
-            float:left;
-            margin-left:10px;
+            font-size:14px;
         }
         .atalk{
-           margin:10px; 
+           margin:0px;
         }
         .atalk span{
             display:inline-block;
@@ -67,26 +84,96 @@
             color:#fff;
             padding:5px 10px;
         }
+        .reference{
+            width:131px;
+            height:26px;
+            float:left;
+            font-size:11px;
+
+            max-width: 300px;
+            background: linear-gradient(to bottom, #4eb5e5 0%,#389ed5 100%); /* W3C */
+              border: none;
+              border-radius: 1px;
+              position: relative;
+              border-bottom: 1px solid #d9d5c8;
+              color: #fbfaf9;
+              font-family: 'Open Sans', sans-serif;
+              text-shadow: 1px 1px 1px rgba(0,0,0,.4);
+              text-align: left;
+              text-indent: 1px;
+              box-shadow: 0px 1px 0px 0px rgba(0,0,0,.2);
+              cursor: pointer;
+            /* Just for presentation */
+              display: block;
+              margin: 0 0 0 2px;
+        }
+        .reference:after {
+          content: "";
+          width: 0;
+          height: 0;
+          display: block;
+          border-top: 5px solid #64a7bc;
+          border-bottom: 2px solid #fffef6;
+          border-left: 10px solid transparent;
+          border-right: 10px solid #68a8bc;
+          position: absolute;
+          opacity: 0.6;
+          right: 0;
+          top: 0;
+          border-radius: 0 5px 5px 0;
+        }
+
+
     </style>
     <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
     
 </head>
 <body>
+<div class="headtext"><span id="info">我是1亿参数的GPT，由个人训练目前在调试，学习过一定量百科、医学、法律、保险知识，与OpenAI 1750亿参数的chatGPT有差距,但我还进化哦^_^，30亿参数的在训练中</span></div>
     <div class="talk_con">
         <div class="talk_show" id="words">
-            <div class="atalk"><span id="asay">我是你的专属chatGPT，由个人训练目前正在测试，懂百科、医学、法律、保险，弱于OpenAI chatGPT,但我也在还进化哦^_^</span></div>
+            <div class="atalk"><span id="asay">来了来啦^_^</span></div>
             <!-- <div class="btalk"><span id="bsay"></span></div> -->
         </div>
     
         <div class="talk_input">
             <select class="whotalk" id="who">
-                <!-- <option value="0">说：</option> -->
+                <!--<option value="0">说：</option> -->
                 <option value="1">你说：</option>
             </select>
-            <input type="text" class="talk_word" id="talkwords">
-            <input type="button" value="发送" class="talk_sub" id="talksub">
+            <input type="text"   class="talk_word" id="talkwords" onkeydown="if(event.keyCode==13){ Send();}" />
+            <input type="button" class="talk_sub" value="发送"  id="talksub">
+
+            <input type="button" class="reference" value="如何做好投资"      id="talkref1">
+            <input type="button" class="reference" value="新车购买车险流程"               id="talkref2">
+            <input type="button" class="reference" value="朋友欠钱不还可以起诉吗"           id="talkref3">
+            <input type="button" class="reference" value="鼻痒，打喷嚏过敏性鼻炎用什么药最好"   id="talkref4">
+            <input type="button" class="reference" value="感觉喉咙涩，舌头麻，不知是什么原因吃啥药"  id="talkref5">
+            <input type="button" class="reference" value="怀孕什么时候能感觉到？初期症状都有什么"  id="talkref6">
+
+
             <script src="{{ url_for('static', filename='js/script.js') }}"></script>
         </div>
     </div>
 </body>
 </html>
+
+<script type="text/javascript">
+
+    function actionOnEnter(evt){
+        evt=evt?evt:event;
+        var charCode=(evt.charCode)?evt.charCode:((evt.which)?evt.which:evt.keyCode);
+        if(charCode==13 || charCode==3){
+             doBusiness();
+        }
+    }
+    function doBusiness(){
+        alert("biz");
+    }
+    var talksub=document.getElementById("talksub")
+    function Send(){
+        talksub.click();
+        //alert("biz");
+    }
+
+</script>
